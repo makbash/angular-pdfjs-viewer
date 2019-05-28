@@ -4,12 +4,12 @@
  * Copyright (c) 2015 ; Licensed MIT
  */
 
-+function () {
-    'use strict';
 
-    var module = angular.module('pdfjsViewer', []);
+(function(window, angular) {'use strict';
+
+    angular.module('pdfjsViewer', []);
     
-    module.provider('pdfjsViewerConfig', function() {
+    angular.provider('pdfjsViewerConfig', function() {
         var config = {
             workerSrc: null,
             cmapDir: null,
@@ -44,7 +44,7 @@
         }
     });
     
-    module.run(['pdfjsViewerConfig', function(pdfjsViewerConfig) {
+    angular.run(['pdfjsViewerConfig', function(pdfjsViewerConfig) {
         if (pdfjsViewerConfig.workerSrc) {
             PDFJS.workerSrc = pdfjsViewerConfig.workerSrc;
         }
@@ -68,7 +68,7 @@
         }
     }]);
     
-    module.directive('pdfjsViewer', ['$interval', function ($interval) {
+    angular.directive('pdfjsViewer', ['$interval', function ($interval) {
         return {
             templateUrl: file.folder + '../../pdf.js-viewer/viewer.html',
             restrict: 'E',
@@ -222,4 +222,4 @@
         return location;
     }
     // ======
-}();
+})(window, window.angular);
